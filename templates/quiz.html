@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Computer Science Quiz</h1>
+       <form method="POST" action="/">
+            {% for key, question_data in test.items() %}
+            <fieldset class="question-block">
+                <legend>{{ question_data.question }}</legend>
+                {% set counter = 0 %}
+                {% for option in question_data.options %}
+                    <label class="option-label">
+                        <input type="radio" name="{{ key }}" value="{{ loop.index0 }}" required> {{ option }}
+                    </label>
+                    {% endfor %}
+
+            </fieldset>
+            {% endfor %}
+            <input type="submit" class="submit-btn" value="Submit Answers">
+        </form>
+    </div>
+</body>
+</html>
